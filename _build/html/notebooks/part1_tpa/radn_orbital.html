@@ -507,7 +507,7 @@
 <p>This notebook is part of <a class="reference external" href="https://brian-rose.github.io/ClimateLaboratoryBook">The Climate Laboratory</a> by <a class="reference external" href="http://www.atmos.albany.edu/facstaff/brose/index.html">Brian E. J. Rose</a>, University at Albany.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">climlab</span><span class="w"> </span><span class="kn">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">const</span>
@@ -557,7 +557,7 @@
 <p>to compare the maximum insolation received at the North Pole (at its summer solstice) and the South Pole (at its summer solstice).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">climlab.solar.insolation</span><span class="w"> </span><span class="kn">import</span> <span class="n">daily_insolation</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">climlab.solar.insolation</span><span class="w"> </span><span class="kn">import</span> <span class="n">daily_insolation</span>
 <span class="n">days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">const</span><span class="o">.</span><span class="n">days_per_year</span><span class="p">,</span> <span class="mi">365</span><span class="p">)</span>
 
 <span class="n">Qnorth</span> <span class="o">=</span> <span class="n">daily_insolation</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span><span class="n">days</span><span class="p">)</span>
@@ -567,8 +567,8 @@
 
 
 <span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;Daily average insolation at summer solstice:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;North Pole: </span><span class="si">%0.2f</span><span class="s1"> W/m2.&#39;</span> <span class="o">%</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Qnorth</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;South Pole: </span><span class="si">%0.2f</span><span class="s1"> W/m2.&#39;</span> <span class="o">%</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Qsouth</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;North Pole: </span><span class="si">%0.2f</span><span class="s1"> W/m2.&#39;</span> <span class="o">%</span><span class="k">np</span>.max(Qnorth))
+<span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;South Pole: </span><span class="si">%0.2f</span><span class="s1"> W/m2.&#39;</span> <span class="o">%</span><span class="k">np</span>.max(Qsouth))
 
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">days</span><span class="p">,</span><span class="n">Qnorth</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;North Pole&quot;</span><span class="p">)</span>
@@ -671,14 +671,14 @@ $<span class="math notranslate nohighlight">\( e = \frac{d_a-d_p}{d_a+d_p} \)</s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">climlab.solar.orbital</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrbitalTable</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">climlab.solar.orbital</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrbitalTable</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">OrbitalTable</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OrbitalTable</span>
 </pre></div>
 </div>
 </div>
@@ -1079,7 +1079,7 @@ Attributes:
 <p>Make reference plots of the variation in the three orbital parameter over the last 1 million years</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kyears</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span> <span class="o">-</span><span class="mf">1000.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kyears</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span> <span class="o">-</span><span class="mf">1000.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">kyears</span><span class="p">)</span>
 <span class="n">orb</span> <span class="o">=</span> <span class="n">OrbitalTable</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">kyear</span><span class="o">=</span><span class="n">kyears</span><span class="p">)</span>
 <span class="n">orb</span>
@@ -1497,7 +1497,7 @@ Attributes:
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span> <span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span> <span class="p">)</span>
 
 <span class="n">ax1</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span> <span class="n">kyears</span><span class="p">,</span> <span class="n">orb</span><span class="p">[</span><span class="s1">&#39;ecc&#39;</span><span class="p">]</span> <span class="p">)</span>
@@ -1542,14 +1542,14 @@ Attributes:
 <p>Calculate the insolation at the <strong>North Pole</strong> for a planet with <strong>zero obliquity and eccentricity</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">climlab.solar.insolation</span><span class="w"> </span><span class="kn">import</span> <span class="n">daily_insolation</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">climlab.solar.insolation</span><span class="w"> </span><span class="kn">import</span> <span class="n">daily_insolation</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">thisorb</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ecc&#39;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;obliquity&#39;</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">&#39;long_peri&#39;</span><span class="p">:</span><span class="mf">0.</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thisorb</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ecc&#39;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;obliquity&#39;</span><span class="p">:</span><span class="mf">0.</span><span class="p">,</span> <span class="s1">&#39;long_peri&#39;</span><span class="p">:</span><span class="mf">0.</span><span class="p">}</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">thisorb</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1562,7 +1562,7 @@ Attributes:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="mf">20.</span><span class="p">)</span><span class="o">/</span><span class="mi">20</span> <span class="o">*</span> <span class="n">const</span><span class="o">.</span><span class="n">days_per_year</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="mf">20.</span><span class="p">)</span><span class="o">/</span><span class="mi">20</span> <span class="o">*</span> <span class="n">const</span><span class="o">.</span><span class="n">days_per_year</span>
 
 <span class="n">daily_insolation</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="n">days</span><span class="p">,</span> <span class="n">thisorb</span><span class="p">)</span>
 </pre></div>
@@ -1976,7 +1976,7 @@ Coordinates:
 <p>Compare this with the same calculation for default (present-day) orbital parameters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">daily_insolation</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="n">days</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">daily_insolation</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="n">days</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2416,7 +2416,7 @@ Coordinates:
 <p>The classical way to plot this is the look at <strong>insolation at summer solstice at 65ºN</strong>.  Let’s plot this for the last 100,000 years.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Plot summer solstice insolation at 65ºN</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Plot summer solstice insolation at 65ºN</span>
 
 <span class="n">kyears100</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>  <span class="c1">#  last 100 kyr</span>
 <span class="n">thisorb</span> <span class="o">=</span> <span class="n">OrbitalTable</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">kyear</span><span class="o">=</span><span class="n">kyears100</span><span class="p">)</span>
@@ -2483,7 +2483,7 @@ Coordinates:
 <h3>Comparing insolation at 10 kyr and 23 kyr<a class="headerlink" href="#comparing-insolation-at-10-kyr-and-23-kyr" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">181</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">181</span><span class="p">)</span>
 
 <span class="n">days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="mf">50.</span><span class="p">)</span><span class="o">/</span><span class="mi">50</span> <span class="o">*</span> <span class="n">const</span><span class="o">.</span><span class="n">days_per_year</span>
 
@@ -2504,7 +2504,7 @@ Coordinates:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="p">)</span>
 
 
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -2537,9 +2537,7 @@ Coordinates:
 <p>Finally, take the <strong>global average</strong> of the difference.  Recall that the cells reduce in size as we move towards the poles, so if we take the simple arithmetic mean we will get the incorrect answer, as it will bias the result towards the poles.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-
-<span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Qdiff</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">lat</span><span class="p">)))</span> <span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Qdiff</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">lat</span><span class="p">)))</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2570,7 +2568,7 @@ Coordinates:
 <p>Create a large array of insolation over the whole globe, whole year, and for every set of orbital parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">days</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">days</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2590,7 +2588,7 @@ Coordinates:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">91</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">91</span><span class="p">)</span>
 <span class="n">num</span> <span class="o">=</span> <span class="mf">365.</span>
 <span class="n">days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="n">num</span><span class="p">,</span><span class="mi">365</span><span class="p">)</span><span class="o">/</span><span class="n">num</span> <span class="o">*</span> <span class="n">const</span><span class="o">.</span><span class="n">days_per_year</span>
 <span class="n">Q</span> <span class="o">=</span> <span class="n">daily_insolation</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">days</span><span class="p">,</span> <span class="n">orb</span><span class="p">)</span>
@@ -2606,7 +2604,7 @@ Coordinates:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Qann</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># time average over the year</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Qann</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># time average over the year</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">Qann</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span> <span class="p">(</span><span class="n">kyears</span><span class="p">)</span>
 <span class="n">Qglobal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span> <span class="n">kyears</span> <span class="p">)</span>
@@ -2626,7 +2624,7 @@ Coordinates:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">orb</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">orb</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2655,7 +2653,7 @@ Attributes:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
@@ -2732,16 +2730,16 @@ Attributes:
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "climlab"
         },
         kernelOptions: {
-            name: "python3",
+            name: "climlab",
             path: "./notebooks/part1_tpa"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'climlab'</script>
 
                 </article>
               

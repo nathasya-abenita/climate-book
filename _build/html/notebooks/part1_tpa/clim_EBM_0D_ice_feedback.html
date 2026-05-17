@@ -504,7 +504,7 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 <p>First of all we will define this function of albedo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># function to calculate alfa</span>
@@ -518,7 +518,7 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 <p>Let’s take a look at this function by plotting it.  We can do this by defining a vector of temperatures…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># vector of surface temperatures</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vector of surface temperatures</span>
 <span class="n">tmin</span><span class="p">,</span><span class="n">tmax</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="mi">350</span>
 <span class="n">Ts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">tmin</span><span class="p">,</span><span class="n">tmax</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="nb">print</span> <span class="p">(</span><span class="n">Ts</span><span class="p">)</span>
@@ -557,7 +557,7 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># vector of albedos</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vector of albedos</span>
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">alpha</span><span class="p">(</span><span class="n">Ts</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Ts (K)&quot;</span><span class="p">)</span>
@@ -569,14 +569,14 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Albedo&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/f83f2c9dc6faba2e9fe69822145bb7049746b1ae61806e6e7fbb9fcb9796c2fc.png" src="../../_images/f83f2c9dc6faba2e9fe69822145bb7049746b1ae61806e6e7fbb9fcb9796c2fc.png" />
+<img alt="../../_images/07b6c9b3b4ca855a8f6012cfd64a4810cc6bef8cdb22a26f94c9fd96647e065f.png" src="../../_images/07b6c9b3b4ca855a8f6012cfd64a4810cc6bef8cdb22a26f94c9fd96647e065f.png" />
 </div>
 </div>
 <p>So we can see that for temperatures exceeding 300K roughly, the Earth becomes ice-free and the albedo tends to a fixed values of about 0.2.  As temperature cools the ice edge moves to the south, until for conditions below Ts=225K most of the globe is frozen and the albedo tends to 0.7.</p>
 <p>So now, rather than solve the equation, we are simply going to plot the RHS to get the sign of DT/Dt</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># constants needed</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># constants needed</span>
 <span class="n">sigma</span><span class="o">=</span><span class="mf">5.67e-8</span> <span class="c1"># Stefan-B constant </span>
 <span class="n">eps_e</span><span class="o">=</span><span class="mf">0.61</span>    <span class="c1"># equivalent emissivity of surface: 1-eps/2</span>
 
@@ -598,10 +598,10 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x119e57460&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x134434f90&gt;
 </pre></div>
 </div>
-<img alt="../../_images/e6c4ac329b7f8b902bba93959c69e9a6330c159cfa7feb32f50461e107002b0d.png" src="../../_images/e6c4ac329b7f8b902bba93959c69e9a6330c159cfa7feb32f50461e107002b0d.png" />
+<img alt="../../_images/fbb0c89f589f5c120337c57b1e4662678f833e14718f8b6acfef4ee26862be21.png" src="../../_images/fbb0c89f589f5c120337c57b1e4662678f833e14718f8b6acfef4ee26862be21.png" />
 </div>
 </div>
 </section>
@@ -610,7 +610,7 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 <p>When you have discussed this, we will go on to plot a contour plot of <span class="math notranslate nohighlight">\(C \frac{DT}{Dt}\)</span> for a range of values for S0 and Ts, with S0 ranging</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the solar constant array</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the solar constant array</span>
 <span class="n">S0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="c1"># make 2D arrays for contour plot:</span>
@@ -622,7 +622,7 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># contour plot</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># contour plot</span>
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span><span class="n">Ts</span><span class="p">,</span><span class="n">cdTdt</span><span class="p">(</span><span class="n">S2d</span><span class="p">,</span><span class="n">T2d</span><span class="p">),</span><span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">400</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">400</span><span class="p">],</span><span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cyan&quot;</span><span class="p">,</span><span class="s2">&quot;pink&quot;</span><span class="p">])</span>
 <span class="n">X</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span><span class="n">Ts</span><span class="p">,</span><span class="n">cdTdt</span><span class="p">(</span><span class="n">S2d</span><span class="p">,</span><span class="n">T2d</span><span class="p">),</span><span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">400</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span>
@@ -634,10 +634,10 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x11ab72470&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x1345789d0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/464168c08bb58b2562503c1c065ace34d7c222a3b6ea0d7ccfb1c7c7e6533133.png" src="../../_images/464168c08bb58b2562503c1c065ace34d7c222a3b6ea0d7ccfb1c7c7e6533133.png" />
+<img alt="../../_images/f78e69b3726b00d7ba389b257b394cde09058ca2e751751121405c0024eececc.png" src="../../_images/f78e69b3726b00d7ba389b257b394cde09058ca2e751751121405c0024eececc.png" />
 </div>
 </div>
 </section>
@@ -648,6 +648,52 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 <section id="exercise">
 <h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
 <p>Write a small python code that iterates the temperature until <span class="math notranslate nohighlight">\(\frac{Dt}{dt}=0\)</span>.  Now do the following…  Starting from <span class="math notranslate nohighlight">\(S_0=1600 W m^{-2}\)</span> calculate <span class="math notranslate nohighlight">\(T_s\)</span> (use a first guess <span class="math notranslate nohighlight">\(T_s\)</span>=320K.  Then reduce <span class="math notranslate nohighlight">\(S_0\)</span> by 20 W m<span class="math notranslate nohighlight">\(^{-2}\)</span>, find the new equilibrium (starting the iteration from the previous equilibrium value), repeat until <span class="math notranslate nohighlight">\(S_0\)</span>=1000 W m<span class="math notranslate nohighlight">\(^{-2}\)</span>, storing the equilibrium . Then reverse the process by increasing <span class="math notranslate nohighlight">\(S_0\)</span> in 20 <span class="math notranslate nohighlight">\(W m^{-2}\)</span> steps back to the present day and beyond to 1600 W m<span class="math notranslate nohighlight">\(^{-2}\)</span>.  Plot <span class="math notranslate nohighlight">\(T_s\)</span> against <span class="math notranslate nohighlight">\(S_0\)</span>.</p>
+<details>
+<summary>Click to see the code</summary>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">S0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1200</span><span class="p">,</span><span class="mi">1800</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">Ts</span><span class="o">=</span><span class="mf">300.</span>
+<span class="n">C</span><span class="o">=</span><span class="mi">500</span>  <span class="c1"># real value 2.8 e8 J m^-2 K^-1</span>
+<span class="c1">#</span>
+<span class="n">Tdown</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">Tup</span><span class="o">=</span><span class="p">[]</span>
+<span class="c1">#for S in [1800]:</span>
+<span class="k">for</span> <span class="n">S</span> <span class="ow">in</span> <span class="n">S0</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="n">delT</span><span class="o">=</span><span class="mf">999.</span>
+    <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">delT</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.01</span><span class="p">:</span>
+        <span class="n">delT</span><span class="o">=</span><span class="n">cdTdt</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">Ts</span><span class="p">)</span><span class="o">/</span><span class="n">C</span>
+        <span class="n">Ts</span><span class="o">+=</span><span class="n">delT</span>
+    <span class="n">Tdown</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Ts</span><span class="p">)</span>
+<span class="c1"># up loop </span>
+<span class="c1">#for S in [1800]:</span>
+<span class="k">for</span> <span class="n">S</span> <span class="ow">in</span> <span class="n">S0</span><span class="p">:</span>
+    <span class="n">delT</span><span class="o">=</span><span class="mf">999.</span>
+    <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">delT</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.01</span><span class="p">:</span>
+        <span class="n">delT</span><span class="o">=</span><span class="n">cdTdt</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">Ts</span><span class="p">)</span><span class="o">/</span><span class="n">C</span>
+        <span class="n">Ts</span><span class="o">+=</span><span class="n">delT</span>
+    <span class="n">Tup</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Ts</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">S0</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">Tdown</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Decreasing S0&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span><span class="n">Tup</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Increasing S0&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;S0 (W/m2)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ts equilibrium (K)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you get stuck you can cut and paste the code in here:</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Ts equilibrium (K)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/b6588904520d84e4376a1230d46a3ffb8e03195bbcf4735a5d1c09e748582720.png" src="../../_images/b6588904520d84e4376a1230d46a3ffb8e03195bbcf4735a5d1c09e748582720.png" />
+</div>
+</div>
 </section>
 <section id="id1">
 <h2>Question:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
@@ -655,7 +701,7 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 <p>Similarly as we did for the Planck feedback, we need to calculate the rate of change of flux imbalance with respect to temperature:</p>
 <div class="math notranslate nohighlight">
 \[
--\frac{\partial N}{\partial \alpha}\frac{\partial \alpha}{\partial T}=-\underbrace{\frac{-S0}{4}}_{\frac{\partial N}{\partial \alpha}}\underbrace{\frac{1}{4}\frac{1}{23}sech^2\frac{T-272}{23}}_{\frac{\partial \alpha}{\partial T}}
+-\frac{\partial F}{\partial \alpha}\frac{\partial \alpha}{\partial T}=-\underbrace{\frac{-S0}{4}}_{\frac{\partial N}{\partial \alpha}}\underbrace{\frac{1}{4}\frac{1}{23}sech^2\frac{T-272}{23}}_{\frac{\partial \alpha}{\partial T}}
 \]</div>
 <p>which uses the trig relation <span class="math notranslate nohighlight">\(\frac{d tanh(x)}{dx}=sech^2(x)\)</span>.</p>
 <p>We can now code this up to calculate the feedback, we need the relationship for <span class="math notranslate nohighlight">\(sech^2(x)\)</span>:</p>
@@ -664,7 +710,7 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 <p>This gives</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mp</span>
 
 <span class="n">Ts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">340</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">Ts</span><span class="o">-</span><span class="mi">272</span><span class="p">)</span><span class="o">/</span><span class="mi">23</span>
@@ -682,7 +728,7 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;T (K)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/d4caf04f804e91a61fd14e534d51944300f070bcfcc65c77e1272c0c446e552a.png" src="../../_images/d4caf04f804e91a61fd14e534d51944300f070bcfcc65c77e1272c0c446e552a.png" />
+<img alt="../../_images/ffe8fb44d21d3d5646741b60b15de6c3801493a0b1196b00a884001ce966a35b.png" src="../../_images/ffe8fb44d21d3d5646741b60b15de6c3801493a0b1196b00a884001ce966a35b.png" />
 </div>
 </div>
 <p>Note that the magnitude of the feedback is strongly dependent on the temperature, i.e. the ice albedo feedback strength is not an absolute but depends on the current state.</p>
@@ -696,7 +742,7 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 <p>Try to add the Planck feedback to the plot…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># add hline for magnitude of Planck</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add hline for magnitude of Planck</span>
 <span class="n">planckfeedback</span><span class="o">=-</span><span class="mf">4.0</span><span class="o">*</span><span class="n">eps_e</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -711,7 +757,6 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">tmin</span><span class="p">,</span><span class="n">tmax</span><span class="p">,</span><span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;T (K)&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Total $\lambda$ (Wm$^{-2}$K$^{-1}$)&quot;</span><span class="p">)</span>
-
 </pre></div>
 </div>
 </div>
@@ -719,14 +764,14 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Total $\\lambda$ (Wm$^{-2}$K$^{-1}$)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/4e9aeadc692cc11a20d10ac38f5a804b7d43bbf73a9dcafb58c920fc010bce17.png" src="../../_images/4e9aeadc692cc11a20d10ac38f5a804b7d43bbf73a9dcafb58c920fc010bce17.png" />
+<img alt="../../_images/d073f18407fcb230503d62eee138a75943ccb9ea8702ad426d0c6f5962e64b73.png" src="../../_images/d073f18407fcb230503d62eee138a75943ccb9ea8702ad426d0c6f5962e64b73.png" />
 </div>
 </div>
 <p>We can see that the system is indeed unstable between approximately 255K and 282 K, by finding out the lowest and highest entries where the ice albedo exceeds the Planck feedback, (although to be precise we should really solve with a root finding algorithm).</p>
 <p>This very simple model shows the essence of unstable feedback.  In the full zonal model of ice feedback we will see in fact that ice albedo feedback is actually runaway once the ice edge expands to a certain latitude, since the impact of the ice increases as you move towards the equator, which receives more solar insulation over the year.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
 <span class="c1"># rough estimate (to nearest 2K) of unstable regime bounds</span>
 <span class="c1">#</span>
 <span class="n">unstable_min</span><span class="o">=</span><span class="n">Ts</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">feedback</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span>
@@ -736,7 +781,7 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Earth system unstable between  255.5  and  281.5  K
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Earth system unstable between  256.5656565656566  and  280.6060606060606  K
 </pre></div>
 </div>
 </div>
@@ -753,7 +798,7 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 </ul> <p>Finally… if you enjoyed this notebook and wish to investigate further, I suggest trying out the zonal EBM notebook in Brian Rose’s coursebook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Ts</span><span class="o">=</span><span class="mf">320.</span> <span class="c1"># first guess initial value..., warm temperature</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ts</span><span class="o">=</span><span class="mf">320.</span> <span class="c1"># first guess initial value..., warm temperature</span>
 <span class="n">S0vec</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># vector of S0</span>
 <span class="n">Cwater</span><span class="o">=</span><span class="mi">3850</span>
 <span class="n">densityH</span><span class="o">=</span><span class="mf">1e6</span>
@@ -791,15 +836,8 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;hysteresis&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;S0 (W m$^{-2}$)&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ts(K) &quot;</span><span class="p">)</span>
-
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Ts(K) &#39;)
-</pre></div>
-</div>
-<img alt="../../_images/53d3a72705b44a1e9faa67d1b67813540c7e11d6aaab598ac1b87b17e5fe7715.png" src="../../_images/53d3a72705b44a1e9faa67d1b67813540c7e11d6aaab598ac1b87b17e5fe7715.png" />
 </div>
 </div>
 </section>
@@ -814,16 +852,16 @@ Why is this?  Well, this is to mimic the feedback due to ice (although of course
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "climlab"
         },
         kernelOptions: {
-            name: "python3",
+            name: "climlab",
             path: "./notebooks/part1_tpa"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'climlab'</script>
 
                 </article>
               
