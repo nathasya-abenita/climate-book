@@ -461,8 +461,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments-this-notebook-borrows-material-from-lecture-notes-of-geoff-vallis-university-of-exeter-and-simona-bordoni-university-of-trento">Acknowledgments: This notebook borrows material from lecture notes of Geoff Vallis (university of Exeter) and Simona Bordoni (University of Trento)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-and-questions-to-consider">Exercises and Questions to consider:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-on-the-climate-feedback">Exercises on the climate feedback</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feedback-factor">Feedback factor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#water-vapour-feedback-in-climlab">Water vapour feedback in climlab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#double-co2-model">Double CO2 model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-rh-profile-that-we-will-fix">Initial RH profile that we will fix</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-rh-rce-adjustment">Constant RH RCE adjustment</a></li>
 </ul>
@@ -610,18 +610,19 @@ T^4_s=(n+1)T^4_e
 <li><p>At what value of the solar constant does the system become unstable?</p></li>
 <li><p>What is the physics of this instability?</p></li>
 </ol>
-<p>Congratulations, you have discovered what is known as the runaway greenhouse effect, first coined by Ingersoll (82). We will discuss the physics of this in class.</p>
+<p>This is the runaway greenhouse effect, first coined by Ingersoll (82). We will discuss the physics of this in class.</p>
 </section>
 <section id="exercises-on-the-climate-feedback">
 <h2>Exercises on the climate feedback<a class="headerlink" href="#exercises-on-the-climate-feedback" title="Link to this heading">#</a></h2>
+<div class="alert alert-info">
 <ol class="arabic simple">
 <li><p>Without looking at the next section, attempt to derive the water vapor climate feedback factor <span class="math notranslate nohighlight">\(\lambda_{wv}\)</span> in this model for present day <span class="math notranslate nohighlight">\(S_0\)</span>.</p></li>
+<li><p>Write a code to plot the feedback factor as a function of temperature</p></li>
 <li><p>Is the feedback positive or negative, and do you understand why?</p></li>
-<li><p>The feedback seems to be weaker than the value derived from GCMs.  To what do you need to change the factor 0.14 to in order to get a feedback of 2.0 W m<span class="math notranslate nohighlight">\(^{-2}\)</span> K<span class="math notranslate nohighlight">\(^{-1}\)</span>?  How would that revised value change the equilibrium climate for today’s solar forcing?</p></li>
+<li><p>The feedback seems to be weaker than the value derived from GCMs.  To what do you need to change the factor 0.14 to in order to get a feedback of ~2.0 W m<span class="math notranslate nohighlight">\(^{-2}\)</span> K<span class="math notranslate nohighlight">\(^{-1}\)</span>?  How would that revised value change the equilibrium climate for today’s solar forcing?</p></li>
 </ol>
-</section>
-<section id="feedback-factor">
-<h2>Feedback factor<a class="headerlink" href="#feedback-factor" title="Link to this heading">#</a></h2>
+</div><details>
+  <summary>Feedback factor</summary>
 <p>We recall that the climate feedback factor is the partial derivative of the TOA fluxes with respect to the surface temperature, changing only the parameter in question, in this case water vapour.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -632,9 +633,9 @@ T^4_s=(n+1)T^4_e
 \frac{d\tau}{dT_s}=0.14 \exp \big [ - \frac{L_v}{R_v}  \big( \frac{1}{T_s} - \frac{1}{288} \big ) \big ] \frac{L_v} {R_v T_s^2}=\tau_{wv}(T)\frac{L_v} {R_v T_s^2}
 \]</div>
 <p>Note, you can also derive the total substantive derivative of <span class="math notranslate nohighlight">\(N\)</span> and then subtract the Planck feedback, you should arrive at the approximately same answer (try it and see!):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dtaudT</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="mf">0.14</span><span class="p">):</span>
+</details><details>
+<summary>Code to plot feedback</summary>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dtaudT</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="mf">0.14</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;optical depth as function of surface temperature&quot;&quot;&quot;</span>
     <span class="n">LoR</span><span class="o">=</span><span class="n">Lv</span><span class="o">/</span><span class="n">Rv</span>
     <span class="k">return</span> <span class="n">tauwv</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="n">fac</span><span class="p">)</span><span class="o">*</span><span class="n">LoR</span><span class="o">/</span><span class="p">(</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>
@@ -649,24 +650,14 @@ T^4_s=(n+1)T^4_e
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">lamwv</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$T_s$ (K)&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;WV Feedback $</span><span class="se">\\</span><span class="s2">lambda_</span><span class="si">{wv}</span><span class="s2">$ (W m$^{-2}$ K$^{-1}$)&quot;</span><span class="p">)</span>
+<span class="o">&lt;/</span><span class="n">details</span><span class="o">&gt;</span>
 </pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>water vapour feedback for 288  =  0.6712111602786375  W m$^{-2}$ K^-1
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;WV Feedback $\\lambda_{wv}$ (W m$^{-2}$ K$^{-1}$)&#39;)
-</pre></div>
-</div>
-<img alt="../../_images/6f69ead657f1c50f9c479e1148722ac9f095932ad48ed5f03e4456d365b075fb.png" src="../../_images/6f69ead657f1c50f9c479e1148722ac9f095932ad48ed5f03e4456d365b075fb.png" />
-</div>
 </div>
 </section>
 <section id="water-vapour-feedback-in-climlab">
 <h2>Water vapour feedback in climlab<a class="headerlink" href="#water-vapour-feedback-in-climlab" title="Link to this heading">#</a></h2>
-<p>So we have seen from the above very simple model that water vapor feedback in positive.  Now we will attempt to calculate it using climlab that implements a full radiative scheme RRTM which is also used in full physics climate models.</p>
-<p>This follows on from the notebook on RCE from the first terms course</p>
+<p>So we have seen from the above very simple model that water vapor feedback in positive, but very simple and renders a low approximation to the feedback in climate models.  Now we will attempt to calculate it using climlab that implements a full radiative scheme RRTM which is also used in full physics climate models.</p>
+<p>This follows on from the notebook on RCE from the first terms course (RCE lecture link here).</p>
 <p>First let’s import the packages we need.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -822,8 +813,8 @@ Total elapsed time is 9.998844602294039 years.
 </div>
 </div>
 </div>
-<section id="initial-rh-profile-that-we-will-fix">
-<h3>Initial RH profile that we will fix<a class="headerlink" href="#initial-rh-profile-that-we-will-fix" title="Link to this heading">#</a></h3>
+<section id="double-co2-model">
+<h3>Double CO2 model<a class="headerlink" href="#double-co2-model" title="Link to this heading">#</a></h3>
 <p>We set up a 2*CO2 model</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -854,6 +845,10 @@ Total elapsed time is 34.995956108029134 years.
 </div>
 </div>
 </div>
+</section>
+<section id="initial-rh-profile-that-we-will-fix">
+<h3>Initial RH profile that we will fix<a class="headerlink" href="#initial-rh-profile-that-we-will-fix" title="Link to this heading">#</a></h3>
+<p>we will use this in the RH feedback run</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  actual specific humidity</span>
@@ -941,6 +936,7 @@ Total elapsed time is 34.995956108029134 years.
 <img alt="../../_images/17e8254a72c4569bb4e3bd4cc106f647e8101e31b92a7eca5956c63c616c744a.png" src="../../_images/17e8254a72c4569bb4e3bd4cc106f647e8101e31b92a7eca5956c63c616c744a.png" />
 </div>
 </div>
+<p>Finally we will calculate the ECS and feedback factor</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ECS</span> <span class="o">=</span> <span class="n">rcm_2xCO2_h2o</span><span class="o">.</span><span class="n">Ts</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">Ts</span>
@@ -983,7 +979,7 @@ lamba_h2o  1.8210473995473875
 </div>
 </div>
 </div>
-<p>Conclusion, the water vapour feedback is similar in this model</p>
+<p>Conclusion, the water vapour feedback is similar in this model to the GCM values.  Of course we have fixed RH, in models the changes in humidity have spatial and vertical changes that means that the mean water vapour response is not identical to this simple 1D column estimate.  The response in</p>
 </section>
 </section>
 </section>
@@ -1057,8 +1053,8 @@ lamba_h2o  1.8210473995473875
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments-this-notebook-borrows-material-from-lecture-notes-of-geoff-vallis-university-of-exeter-and-simona-bordoni-university-of-trento">Acknowledgments: This notebook borrows material from lecture notes of Geoff Vallis (university of Exeter) and Simona Bordoni (University of Trento)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-and-questions-to-consider">Exercises and Questions to consider:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises-on-the-climate-feedback">Exercises on the climate feedback</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feedback-factor">Feedback factor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#water-vapour-feedback-in-climlab">Water vapour feedback in climlab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#double-co2-model">Double CO2 model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-rh-profile-that-we-will-fix">Initial RH profile that we will fix</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-rh-rce-adjustment">Constant RH RCE adjustment</a></li>
 </ul>
