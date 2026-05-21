@@ -553,7 +553,7 @@ T^4_s=(n+1)T^4_e
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Optical Depth ($\\tau$)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/93ff6b300f178f2136e4375553b4b631167d4eb85b189b6c97f9e99bbf9b9795.png" src="../../_images/93ff6b300f178f2136e4375553b4b631167d4eb85b189b6c97f9e99bbf9b9795.png" />
+<img alt="../../_images/34dce630cc490d473fdbb54220cb9a24ad10aef752d4a0bf5ff8b5beb5c89af9.png" src="../../_images/34dce630cc490d473fdbb54220cb9a24ad10aef752d4a0bf5ff8b5beb5c89af9.png" />
 </div>
 </div>
 <p>What do you notice about the shape of the curve?</p>
@@ -563,7 +563,7 @@ T^4_s=(n+1)T^4_e
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># surface albedo with ice feedback included, turned off by default</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">alfa</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">lconst</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">lconst</span><span class="p">:</span> 
-        <span class="n">albedo</span><span class="o">=</span><span class="mf">0.33</span>    
+        <span class="n">albedo</span><span class="o">=</span><span class="mf">0.3</span>    
     <span class="k">else</span><span class="p">:</span>
         <span class="n">albedo</span><span class="o">=</span><span class="mf">0.45</span><span class="o">-</span><span class="mf">0.25</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">((</span><span class="n">T</span><span class="o">-</span><span class="mi">272</span><span class="p">)</span><span class="o">/</span><span class="mi">23</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">albedo</span> 
@@ -575,16 +575,16 @@ T^4_s=(n+1)T^4_e
 
 
 <span class="c1"># define the solar constant array</span>
-<span class="n">S0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">S0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">Ts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="n">T2d</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">Ts</span><span class="p">,(</span><span class="nb">len</span><span class="p">(</span><span class="n">S0</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 <span class="n">S2d</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">S0</span><span class="p">,(</span><span class="nb">len</span><span class="p">(</span><span class="n">Ts</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span>
-
+<span class="n">F</span><span class="o">=</span><span class="n">cdTdt</span><span class="p">(</span><span class="n">S2d</span><span class="p">,</span><span class="n">T2d</span><span class="p">)</span>
 
 <span class="c1"># contour plot</span>
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">X</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">S2d</span><span class="p">,</span><span class="n">T2d</span><span class="p">,</span><span class="n">cdTdt</span><span class="p">(</span><span class="n">S2d</span><span class="p">,</span><span class="n">T2d</span><span class="p">),</span><span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">400</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span>
+<span class="n">X</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">S2d</span><span class="p">,</span><span class="n">T2d</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">400</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;S0 (Wm$^{-2}$)&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;T (K)&quot;</span><span class="p">)</span>
@@ -595,10 +595,10 @@ T^4_s=(n+1)T^4_e
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x105e0c500&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x31d48b1d0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/8cf7663e133b2e4a46250c5b6dd5a8aa9829f683caf68b0bd82d38b54cdc36df.png" src="../../_images/8cf7663e133b2e4a46250c5b6dd5a8aa9829f683caf68b0bd82d38b54cdc36df.png" />
+<img alt="../../_images/f3a9570e682ab1efe46fdc208ba3a53afd42e91d3d9c6e0620c59c615712bb76.png" src="../../_images/f3a9570e682ab1efe46fdc208ba3a53afd42e91d3d9c6e0620c59c615712bb76.png" />
 </div>
 </div>
 </section>
@@ -616,12 +616,40 @@ T^4_s=(n+1)T^4_e
 <h2>Exercises on the climate feedback<a class="headerlink" href="#exercises-on-the-climate-feedback" title="Link to this heading">#</a></h2>
 <div class="alert alert-info">
 <ol class="arabic simple">
+<li><p>Write a code snippet to calculate exactly at what temperature and S0 the system becomes unstable.  Alternatively you can also derive it analytically</p></li>
 <li><p>Without looking at the next section, attempt to derive the water vapor climate feedback factor <span class="math notranslate nohighlight">\(\lambda_{wv}\)</span> in this model for present day <span class="math notranslate nohighlight">\(S_0\)</span>.</p></li>
 <li><p>Write a code to plot the feedback factor as a function of temperature</p></li>
 <li><p>Is the feedback positive or negative, and do you understand why?</p></li>
 <li><p>The feedback seems to be weaker than the value derived from GCMs.  To what do you need to change the factor 0.14 to in order to get a feedback of ~2.0 W m<span class="math notranslate nohighlight">\(^{-2}\)</span> K<span class="math notranslate nohighlight">\(^{-1}\)</span>?  How would that revised value change the equilibrium climate for today’s solar forcing?</p></li>
 </ol>
-</div><details>
+</div><p>To find the “tipping” point we would need to assume that <span class="math notranslate nohighlight">\(C \frac{dT}{dt}=0\)</span> to derive an equation for <span class="math notranslate nohighlight">\(S_0=F(T_s)\)</span>, essentially the zero balanced contour in the graph. We would then need to solve for the condition <span class="math notranslate nohighlight">\(\frac{d S_0}{dT_s}=0\)</span>.  However as <span class="math notranslate nohighlight">\(\tau\)</span> is an expontial (therefore nonlinear) function of temperature, the resulting equation (put math here) needs to be solved numerically.  Thus we just simply search along the <span class="math notranslate nohighlight">\(S_0\)</span> array until we no longer meet the zero contour, i.e. we have positive values everywhere.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check where the 2D grid F is positive</span>
+<span class="n">is_positive</span> <span class="o">=</span> <span class="n">F</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+<span class="c1"># Check every column (S value) to see if it is positive for ALL rows (T values)</span>
+<span class="n">col_all_positive</span> <span class="o">=</span> <span class="n">is_positive</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Find the single integer index of the first True column</span>
+<span class="n">first_valid_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">col_all_positive</span><span class="p">)</span>
+
+<span class="c1"># Use that integer index to find S0 vector value of unstable point</span>
+<span class="n">lowest_S</span> <span class="o">=</span> <span class="n">S0</span><span class="p">[</span><span class="n">first_valid_idx</span><span class="p">]</span>
+<span class="n">unstable_T</span> <span class="o">=</span> <span class="n">Ts</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">F</span><span class="p">[:,</span> <span class="n">first_valid_idx</span><span class="p">])]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unstable at S =&quot;</span><span class="p">,</span> <span class="n">lowest_S</span><span class="p">,</span> <span class="s2">&quot;W m^2&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Temperature at unstable point =&quot;</span><span class="p">,</span> <span class="n">unstable_T</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>unstable at S = 1684 W m^2
+Temperature at unstable point = 320 K
+</pre></div>
+</div>
+</div>
+</div>
+<details>
   <summary>Feedback factor</summary>
 <p>We recall that the climate feedback factor is the partial derivative of the TOA fluxes with respect to the surface temperature, changing only the parameter in question, in this case water vapour.</p>
 <div class="math notranslate nohighlight">
@@ -653,6 +681,36 @@ T^4_s=(n+1)T^4_e
 <span class="o">&lt;/</span><span class="n">details</span><span class="o">&gt;</span>
 </pre></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dtaudT</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="mf">0.14</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;optical depth as function of surface temperature&quot;&quot;&quot;</span>
+    <span class="n">LoR</span><span class="o">=</span><span class="n">Lv</span><span class="o">/</span><span class="n">Rv</span>
+    <span class="k">return</span> <span class="n">tauwv</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="n">fac</span><span class="p">)</span><span class="o">*</span><span class="n">LoR</span><span class="o">/</span><span class="p">(</span><span class="n">T</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>
+
+<span class="n">Ts</span><span class="o">=</span><span class="mi">288</span>
+<span class="n">lamwv</span><span class="o">=</span><span class="n">dtaudT</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="mf">0.14</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="n">tau</span><span class="p">(</span><span class="n">Ts</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;water vapour feedback for&quot;</span><span class="p">,</span><span class="n">Ts</span><span class="p">,</span><span class="s2">&quot; = &quot;</span><span class="p">,</span><span class="n">lamwv</span><span class="p">,</span><span class="s2">&quot; W m$^{-2}$ K^-1&quot;</span><span class="p">)</span>
+
+<span class="n">Ts</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">260</span><span class="p">,</span><span class="mi">380</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">lamwv</span><span class="o">=</span><span class="n">dtaudT</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">fac</span><span class="o">=</span><span class="mf">0.14</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="n">tau</span><span class="p">(</span><span class="n">Ts</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="n">lamwv</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$T_s$ (K)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;WV Feedback $</span><span class="se">\\</span><span class="s2">lambda_</span><span class="si">{wv}</span><span class="s2">$ (W m$^{-2}$ K$^{-1}$)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>water vapour feedback for 288  =  0.6712111602786375  W m$^{-2}$ K^-1
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;WV Feedback $\\lambda_{wv}$ (W m$^{-2}$ K$^{-1}$)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/742c47e323ee040284a927bdfbf38b286a5c75a454979e1411e7d0d1476dcd73.png" src="../../_images/742c47e323ee040284a927bdfbf38b286a5c75a454979e1411e7d0d1476dcd73.png" />
+</div>
+</div>
 </section>
 <section id="water-vapour-feedback-in-climlab">
 <h2>Water vapour feedback in climlab<a class="headerlink" href="#water-vapour-feedback-in-climlab" title="Link to this heading">#</a></h2>
@@ -676,7 +734,7 @@ T^4_s=(n+1)T^4_e
 <p>define a couple of helper functions to plot a skew-T graph.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Resuable function to plot the temperature data on a Skew-T chart</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Reusable function to plot the temperature data on a Skew-T chart</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">make_skewT</span><span class="p">():</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
     <span class="n">skew</span> <span class="o">=</span> <span class="n">SkewT</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
@@ -805,7 +863,7 @@ Files present
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integrating for 1826 steps, 1826.2110000000002 days, or 5 years.
-Total elapsed time is 9.998844602294039 years.
+Total elapsed time is 4.999422301147019 years.
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Field([288.67240698])
@@ -822,6 +880,12 @@ Total elapsed time is 9.998844602294039 years.
 <span class="n">rcm_2xCO2</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">process_like</span><span class="p">(</span><span class="n">rcm</span><span class="p">)</span>
 <span class="n">rcm_2xCO2</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Radiative-Convective Model (2xCO2 initial)&#39;</span>
 <span class="n">rcm_2xCO2</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">absorber_vmr</span><span class="p">[</span><span class="s1">&#39;CO2&#39;</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm_2xCO2</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">absorber_vmr</span><span class="p">[</span><span class="s1">&#39;CO2&#39;</span><span class="p">],</span><span class="s2">&quot; ppmv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.000696  ppmv
 </pre></div>
 </div>
 </div>
@@ -839,7 +903,7 @@ Total elapsed time is 9.998844602294039 years.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integrating for 1826 steps, 1826.2110000000002 days, or 5 years.
-Total elapsed time is 34.995956108029134 years.
+Total elapsed time is 14.998266903441058 years.
 [1.31051796] [-3.20483971]
 </pre></div>
 </div>
@@ -897,7 +961,7 @@ Total elapsed time is 34.995956108029134 years.
 <p>We loop and integrate step by step , resetting the RH to a constant value</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2000</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2500</span><span class="p">):</span>
     <span class="c1"># At every timestep</span>
     <span class="c1"># we calculate the new saturation specific humidity for the new temperature</span>
     <span class="c1">#  and change the water vapor in the radiation model</span>
@@ -917,7 +981,7 @@ Total elapsed time is 34.995956108029134 years.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Field([-1.12283045e-05])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Field([-4.14775056e-06])
 </pre></div>
 </div>
 </div>
@@ -945,7 +1009,7 @@ Total elapsed time is 34.995956108029134 years.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Field([3.03513755])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Field([3.03513887])
 </pre></div>
 </div>
 </div>
@@ -958,7 +1022,7 @@ Total elapsed time is 34.995956108029134 years.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Field([2.31598317])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Field([2.31598418])
 </pre></div>
 </div>
 </div>
@@ -979,7 +1043,8 @@ lamba_h2o  1.8210473995473875
 </div>
 </div>
 </div>
-<p>Conclusion, the water vapour feedback is similar in this model to the GCM values.  Of course we have fixed RH, in models the changes in humidity have spatial and vertical changes that means that the mean water vapour response is not identical to this simple 1D column estimate.  The response in</p>
+<p>Conclusion, the water vapour feedback is similar in this model to the GCM values (CMIP5) plot.  Of course we have fixed RH, in models the changes in humidity have spatial and vertical changes that means that the mean water vapour response is not identical to this simple 1D column estimate.</p>
+<p><img alt="feedbacks in CMIP5" src="../../_images/CMIP5_feedbacks.jpg" /></p>
 </section>
 </section>
 </section>

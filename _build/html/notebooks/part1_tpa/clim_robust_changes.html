@@ -458,7 +458,30 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-precipitation-increases">Mean precipitation increases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-precipitation-increases">1. Mean precipitation increases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-energy-budget">Global energy budget</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sign-convention">sign convention</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-these-terms-change">How do these terms change?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation-with-climlab">Calculation with Climlab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-we-see">What do we see?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-precipitation">Extreme Precipitation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#governing-conservation-equations">Governing Conservation Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#moisture-conservation">Moisture Conservation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamic-energy-balance">Thermodynamic Energy Balance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leading-order-balances-for-heavy-precipitation">Leading Order Balances for Heavy Precipitation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamic-term-delta-hat-q-c">Thermodynamic Term (<span class="math notranslate nohighlight">\(\Delta \hat{q}C\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-term-hat-q-delta-c">Dynamic Term (<span class="math notranslate nohighlight">\(\hat{q}\Delta C\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precipation-frequency">Precipation frequency</a></li>
 </ul>
             </nav>
         </div>
@@ -477,18 +500,416 @@
 <p>Nevertheless, there are certain robust responses that we can predict using simple models and basic understanding of physics that can be tested and evaluated in complex climate models - this enables us to move away from a simple diagnostic assessment of climate output and move towards grounded theories.</p>
 <p>Some examples of robust responses are</p>
 <ul class="simple">
-<li><p>Increase of mean precipitation by 2% <span class="math notranslate nohighlight">\(K^{-1}\)</span></p></li>
-<li><p>Mean increase of precipitation extremes by 7% <span class="math notranslate nohighlight">\(K^{-1}\)</span></p></li>
-<li><p>Reduced frequency of precipitation</p></li>
+<li><p>Increase of <strong>mean precipitation</strong> by 2% <span class="math notranslate nohighlight">\(K^{-1}\)</span></p></li>
+<li><p><strong>Mean increase</strong> of precipitation <strong>extremes</strong> by 7% <span class="math notranslate nohighlight">\(K^{-1}\)</span></p></li>
+<li><p>Thus Reduced frequency of precipitation</p></li>
 <li><p>Land warming faster (~double the rate) than oceans</p></li>
 <li><p>High altitudes warming faster than low altitudes</p></li>
 <li><p>High latitudes warming faster then low latitudes</p></li>
 <li><p>Increased vapour pressure deficit and reduced relative humidity (RH) over land</p></li>
 <li><p>Water vapour feedback approximately that obtained by an assumption of constant RH.</p></li>
 </ul>
-<p>In this notebook we will discuss some (eventually all!) of these and go through them one by one.</p>
+<p>In this notebook we will discuss the robust reponses of precipitation to warming, with the temperature responses in a follow up part 2 (under construction)</p>
 <section id="mean-precipitation-increases">
-<h2>Mean precipitation increases<a class="headerlink" href="#mean-precipitation-increases" title="Link to this heading">#</a></h2>
+<h2>1. Mean precipitation increases<a class="headerlink" href="#mean-precipitation-increases" title="Link to this heading">#</a></h2>
+<p>One might think that precipitation increases in future would be related to the Clausius-Clapeyron equation that determines how the saturation pressure increases with temperature, but as we will see, this is not the case.  Global mean precipitation response is actually constrained by atmospheric energetics.</p>
+<section id="global-energy-budget">
+<h3>Global energy budget<a class="headerlink" href="#global-energy-budget" title="Link to this heading">#</a></h3>
+<p>Let’s have a look at the global energy budget for the atmosphere. This is determined by the following equation.</p>
+<div class="math notranslate nohighlight">
+\[ L_v P + S + \dot{Q}_{rad}=0 \]</div>
+<p>Where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L_v\)</span> is the latent heat of vaporisation (2.5 J kg<span class="math notranslate nohighlight">\(^{-1}\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(P\)</span> is the precipitation rate</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> is the surface sensible heat flux</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{Q}_{rad}\)</span> is the net radiative <strong>heating</strong> of the atmosphere</p></li>
+</ul>
+<section id="sign-convention">
+<h4>sign convention<a class="headerlink" href="#sign-convention" title="Link to this heading">#</a></h4>
+<p>Here we adopt the sign convection that +ve indicates heating of atmosphere, i.e. <span class="math notranslate nohighlight">\(L_v P\)</span> and <span class="math notranslate nohighlight">\(S\)</span> are positive, whereas \dot{Q}_{rad} is negative as the vertically mass weighted RCE equilibrium state is warmer than that for pure radiative equilibrium as we saw in the first terms course.)</p>
+<p>So essentially the RHS describes the net cooling of the atmosphere, which is balances by the net latent heating from phase change i.e. the water source is evaporation from the surface which then falls to earth as precipitation.  Note that this assumes that in a long term equilibrium <span class="math notranslate nohighlight">\(E \approx P\)</span> where <span class="math notranslate nohighlight">\(E\)</span> is the evaporation rate written in terms of mm time<span class="math notranslate nohighlight">\(^{-1}\)</span>, and there is no change in net storage (or that change is very small).</p>
+<details>
+<summary>
+Think about this equation for a moment, there is another assumption that is not accurate.
+</summary> 
+Think about the Latent heat of evaporation $L$, that is the latent heating that results from changing one kg of vapor to the liquid phase.  First of all, this is a weak function of $T$ but this is just a couple of percent and can be safely ignored.  
+<p>But in addition this means that if precipitation falls in the ice phase, one should the latent heat of Fusion instead! <span class="math notranslate nohighlight">\(L_f \approx 2.8e6 \)</span> J kg<span class="math notranslate nohighlight">\(^{-1}\)</span></p>
+<p>Thus the percent error is <span class="math notranslate nohighlight">\((L_f-L_v) f_{ice} / L_v\)</span> where f_{ice} is the global percentage of precipitation that falls to the surface in the ice phase, roughly 5 to 6%.</p>
+<p>Let’s quickly look at a few lines of code to calculate this (see next box).</p>
+</details>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># constants</span>
+<span class="n">L_f</span><span class="o">=</span><span class="mf">2.8e6</span>
+<span class="n">L_v</span><span class="o">=</span><span class="mf">2.5e6</span>
+<span class="n">f_ice</span><span class="o">=</span><span class="mf">0.06</span>
+<span class="n">percent_error</span><span class="o">=</span><span class="mf">100.</span><span class="o">*</span><span class="n">f_ice</span><span class="o">*</span><span class="p">(</span><span class="n">L_f</span><span class="o">-</span><span class="n">L_v</span><span class="p">)</span><span class="o">/</span><span class="n">L_v</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;percentage_error of neglecting ice phase&quot;</span><span class="p">,</span> <span class="n">percent_error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>percentage_error of neglecting ice phase 0.72
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we see, as the fraction <span class="math notranslate nohighlight">\(f_{ice}\)</span> is so small and also <span class="math notranslate nohighlight">\(L_f \sim L_v\)</span> then the overall error is less than one percent and we can also ignore this, or simply incorporate this by using a weighted average value for <span class="math notranslate nohighlight">\(L\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L_e</span><span class="o">=</span> <span class="n">f_ice</span><span class="o">*</span><span class="n">L_f</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">f_ice</span><span class="p">)</span><span class="o">*</span><span class="n">L_v</span>
+<span class="n">formatted_L</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">L_e</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;e+0&quot;</span><span class="p">,</span> <span class="s2">&quot; e &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;e+&quot;</span><span class="p">,</span> <span class="s2">&quot; e &quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;equivalent weighted L &quot;</span><span class="p">,</span><span class="n">formatted_L</span><span class="p">,</span> <span class="s2">&quot;J/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>equivalent weighted L  2.518 e 6 J/kg
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="how-do-these-terms-change">
+<h3>How do these terms change?<a class="headerlink" href="#how-do-these-terms-change" title="Link to this heading">#</a></h3>
+<p>We can rearrange the above energy balance equation in terms of precipitation</p>
+<div class="math notranslate nohighlight">
+\[L_e P = -( S + \dot{Q}_{rad} ) \]</div>
+<p>Now <span class="math notranslate nohighlight">\(S\)</span> is not expected to change much with warming for two reasons, first of all, over oceans <span class="math notranslate nohighlight">\(S \ll L_e P\)</span>, that is, latent heating is much larger then sensible heating by an order of magnitude and oceans cover 70% of the planet.</p>
+<p>Moreover even over land where the Bowen ratio is such that <span class="math notranslate nohighlight">\(S\)</span> can much much larger, even here, the change is <span class="math notranslate nohighlight">\(S\)</span> is restricted because the boundary layer temperature (and therefore to a good extent also the free troposphere) are tightly coupled. Let’s look at the surface flux bulk formula for <span class="math notranslate nohighlight">\(S\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ S = \rho_a c_p C_d V (T_{2m}-T_s)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho_a\)</span> is the atmospheric density and <span class="math notranslate nohighlight">\(C_d\)</span> is the drag coefficient related to the surface “roughness” and <span class="math notranslate nohighlight">\(c_p\)</span> the specific heat capacity and <span class="math notranslate nohighlight">\(V\)</span> the velocity. <span class="math notranslate nohighlight">\(T_{2m}\)</span> is the temperature of the atmosphere measured at 2 meters.</p>
+<p>The key thing is the difference <span class="math notranslate nohighlight">\((T_{2m}-T_s)\)</span>.  As the surface warms then the boundary layer also warms, and the surface flux remains close to the pre-warmed state.  Only significant changes to surface roughness or winds <span class="math notranslate nohighlight">\(V\)</span> could impact
+<span class="math notranslate nohighlight">\(S\)</span>, and changes to <span class="math notranslate nohighlight">\(V\)</span> are very small.</p>
+<p>This means that in future, <strong>changes in precipitation are mostly determined by changes to the mean net radiative cooling of the atmosphere</strong> <span class="math notranslate nohighlight">\(\dot{Q}_{rad}\)</span></p>
+<details>
+<summary>
+    How does $\dot{Q}_{rad}$ change as the surface warms? does it increase or decrease in magnitude? (click to open)
+</summary>
+<p>Think about how warming leads to a troposphere-deep response which follows a moist adiabat. The result of this warming is that the equilibrium profile is <em>further</em> away from the radiative equilibrium profile, and thus the net cooling increases in magnitude. <strong>But what is the magnitude of that change?</strong></p>
+</details>
+<p>Let’s use climlab to make and estimate!!!</p>
+</section>
+<section id="calculation-with-climlab">
+<h3>Calculation with Climlab<a class="headerlink" href="#calculation-with-climlab" title="Link to this heading">#</a></h3>
+<p>We will now use climlab to calculate how net radiation changes for each degree of warming. I won’t go through the first few cells as they are lifted straight from the last lecture on water vapor feedback.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">metpy.plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">SkewT</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">climlab</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note: Ensure the URL points to the actual .nc file download</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://clima-dods.ictp.it/Users/tompkins/diploma/data/&quot;</span>
+<span class="n">files</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tmean3.nc&quot;</span><span class="p">,</span><span class="s2">&quot;qvmean3.nc&quot;</span><span class="p">]</span>
+<span class="n">target</span><span class="o">=</span><span class="s2">&quot;../data/&quot;</span>
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="c1"># 2. Download the file if it doesn&#39;t exist on your disk yet</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">target</span><span class="o">+</span><span class="n">file</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downloading </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="n">file</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target</span><span class="o">+</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Download complete.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Files present&quot;</span><span class="p">)</span>
+        
+<span class="c1"># new coder to read files </span>
+<span class="n">time_coder</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">coders</span><span class="o">.</span><span class="n">CFDatetimeCoder</span><span class="p">(</span><span class="n">use_cftime</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">target</span><span class="o">+</span><span class="s2">&quot;tmean3.nc&quot;</span><span class="p">,</span><span class="n">decode_times</span><span class="o">=</span><span class="n">time_coder</span><span class="p">)</span>
+    <span class="n">Tglobal</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">air</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">target</span><span class="o">+</span><span class="s2">&quot;qvmean3.nc&quot;</span><span class="p">,</span><span class="n">decode_times</span><span class="o">=</span><span class="n">time_coder</span><span class="p">)</span>
+    <span class="n">Qglobal</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">q</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Files present
+Files present
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Make a model on same vertical domain as the GCM</span>
+<span class="n">mystate</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">column_state</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="n">Qglobal</span><span class="o">.</span><span class="n">level</span><span class="p">,</span> <span class="n">water_depth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="c1">#  Build the radiation model -- just like we already did</span>
+<span class="n">rad</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">radiation</span><span class="o">.</span><span class="n">RRTMG</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Radiation&#39;</span><span class="p">,</span>
+                              <span class="n">state</span><span class="o">=</span><span class="n">mystate</span><span class="p">,</span> 
+                              <span class="n">specific_humidity</span><span class="o">=</span><span class="n">Qglobal</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                              <span class="n">timestep</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">seconds_per_day</span><span class="p">,</span>
+                              <span class="n">albedo</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span>  <span class="c1"># surface albedo, tuned to give reasonable ASR for reference cloud-free model</span>
+                             <span class="p">)</span>
+<span class="c1">#  Now create the convection model</span>
+<span class="n">conv</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">convection</span><span class="o">.</span><span class="n">ConvectiveAdjustment</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Convection&#39;</span><span class="p">,</span>
+                                               <span class="n">state</span><span class="o">=</span><span class="n">mystate</span><span class="p">,</span>
+                                               <span class="n">adj_lapse_rate</span><span class="o">=</span><span class="mf">6.5</span><span class="p">,</span>
+                                               <span class="n">timestep</span><span class="o">=</span><span class="n">rad</span><span class="o">.</span><span class="n">timestep</span><span class="p">,</span>
+                                              <span class="p">)</span>
+<span class="c1">#  Here is where we build the model by coupling together the two components</span>
+<span class="n">rcm</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">couple</span><span class="p">([</span><span class="n">rad</span><span class="p">,</span> <span class="n">conv</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Radiative-Convective Model&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we need to calculate the net atmosphere cooling rate.  In order to do this, we will calculate the net flux divergence over the column:</p>
+<div class="math notranslate nohighlight">
+\[\dot{Q}_{rad}=F_{net,SFC}-F_{net,TOA}\]</div>
+<p>where <span class="math notranslate nohighlight">\(F_{net,...}\)</span> is flux sum of the solar and longwave components at the surface (SFC) and top of atmosphere (TOA) with positive fluxes implying downward direction. The units are <span class="math notranslate nohighlight">\(Wm^{-2}\)</span>. Which variables are these, let’s take a look at the diagnostics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">rad</span><span class="o">.</span><span class="n">diagnostics</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;OLR&#39;, &#39;OLRclr&#39;, &#39;OLRcld&#39;, &#39;TdotLW&#39;, &#39;TdotLW_clr&#39;, &#39;LW_sfc&#39;, &#39;LW_sfc_clr&#39;, &#39;LW_flux_up&#39;, &#39;LW_flux_down&#39;, &#39;LW_flux_net&#39;, &#39;LW_flux_up_clr&#39;, &#39;LW_flux_down_clr&#39;, &#39;LW_flux_net_clr&#39;, &#39;ASR&#39;, &#39;ASRclr&#39;, &#39;ASRcld&#39;, &#39;TdotSW&#39;, &#39;TdotSW_clr&#39;, &#39;SW_sfc&#39;, &#39;SW_sfc_clr&#39;, &#39;SW_flux_up&#39;, &#39;SW_flux_down&#39;, &#39;SW_flux_net&#39;, &#39;SW_flux_up_clr&#39;, &#39;SW_flux_down_clr&#39;, &#39;SW_flux_net_clr&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>So for the net TOA we need rad_proc.ASR, rad_proc.OLR and for the surface we take the last level of the flux arrays “index -1”
+SW_flux_down[-1],
+SW_flux_up[-1]
+LW_flux_down[-1]
+LW_flux_up[-1]</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_column_q</span><span class="p">(</span><span class="n">rcm_model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the net atmospheric column radiative heating/cooling rate.</span>
+<span class="sd">    Returns: Q in W/m2 (negative values mean net cooling)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rad_proc</span> <span class="o">=</span> <span class="n">rcm_model</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Net downward radiation at TOA</span>
+    <span class="n">net_TOA</span> <span class="o">=</span> <span class="n">rad_proc</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">rad_proc</span><span class="o">.</span><span class="n">OLR</span>
+    
+    <span class="c1"># Net downward radiation at Surface (Down minus Up for both LW and SW)</span>
+    <span class="c1"># index 0 corresponds to the surface interface in the flux arrays</span>
+    <span class="n">SW_sfc_net</span> <span class="o">=</span> <span class="n">rad_proc</span><span class="o">.</span><span class="n">SW_flux_down</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">rad_proc</span><span class="o">.</span><span class="n">SW_flux_up</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">LW_sfc_net</span> <span class="o">=</span> <span class="n">rad_proc</span><span class="o">.</span><span class="n">LW_flux_down</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">rad_proc</span><span class="o">.</span><span class="n">LW_flux_up</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>   
+    <span class="n">net_sfc</span> <span class="o">=</span> <span class="n">SW_sfc_net</span> <span class="o">+</span> <span class="n">LW_sfc_net</span>
+    
+    <span class="c1"># Atmospheric Column Net Radiative Convergence (W/m2)</span>
+    <span class="n">Q_column</span> <span class="o">=</span> <span class="n">net_TOA</span> <span class="o">-</span> <span class="n">net_sfc</span>
+    <span class="k">return</span> <span class="n">Q_column</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rcm</span><span class="o">.</span><span class="n">integrate_years</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">Q_flux_base</span> <span class="o">=</span> <span class="n">calculate_column_q</span><span class="p">(</span><span class="n">rcm</span><span class="p">)</span>
+
+<span class="c1">#  actual specific humidity</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">rcm</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">specific_humidity</span>
+<span class="c1">#  saturation specific humidity (a function of temperature and pressure)</span>
+<span class="n">qsat</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">thermo</span><span class="o">.</span><span class="n">qsat</span><span class="p">(</span><span class="n">rcm</span><span class="o">.</span><span class="n">Tatm</span><span class="p">,</span> <span class="n">rcm</span><span class="o">.</span><span class="n">lev</span><span class="p">)</span>
+<span class="c1">#  Relative humidity</span>
+<span class="n">rh</span> <span class="o">=</span> <span class="n">q</span><span class="o">/</span><span class="n">qsat</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;equilibrium Ts &quot;</span><span class="p">,</span><span class="n">rcm</span><span class="o">.</span><span class="n">Ts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integrating for 1460 steps, 1460.9688 days, or 4 years.
+Total elapsed time is 3.997347513512951 years.
+equilibrium Ts  285.6543391508532
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can convert this flux divergence into a net cooling rate using the heat capacity of the column <span class="math notranslate nohighlight">\(M c_p\)</span> where M is the atmosphere mass <span class="math notranslate nohighlight">\(M=\frac{p_s}{g}\)</span> where <span class="math notranslate nohighlight">\(p_s\)</span> is the surface pressure. Thus</p>
+<div class="math notranslate nohighlight">
+\[ \left( \frac{d\bar{T}}{dt}\right)_{rad} = \frac{g \dot{Q}_{rad}}{p_s c_p}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_column_heating_rate_kday</span><span class="p">(</span><span class="n">rcm_model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts the column energy flux (W/m2) into a column-integrated mass-weighted </span>
+<span class="sd">    heating rate in K/day using the surface pressure.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get the net energy flux in W/m2 (J/s/m2)</span>
+    <span class="n">Q_w_m2</span> <span class="o">=</span> <span class="n">calculate_column_q</span><span class="p">(</span><span class="n">rcm_model</span><span class="p">)</span>
+    
+    <span class="c1"># Physical Constants</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">g</span>            <span class="c1"># ~9.81 m/s2</span>
+    <span class="n">cp</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">cp</span>          <span class="c1"># ~1004 J/kg/K</span>
+    <span class="n">sec_per_day</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">seconds_per_day</span>  <span class="c1"># 86400</span>
+    
+    <span class="c1"># get surface pressure in Pascals (N/m2)</span>
+    <span class="n">ps_pa</span> <span class="o">=</span> <span class="n">rcm_model</span><span class="o">.</span><span class="n">lev_bounds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
+    
+    <span class="c1"># Calculate total atmospheric column mass per unit area (kg/m2)</span>
+    <span class="n">M_atm</span> <span class="o">=</span> <span class="n">ps_pa</span> <span class="o">/</span> <span class="n">g</span>
+    
+    <span class="c1"># Calculate heating rate in K/day </span>
+    <span class="n">dT_dt_per_day</span> <span class="o">=</span> <span class="n">sec_per_day</span> <span class="o">*</span> <span class="n">Q_w_m2</span> <span class="o">/</span> <span class="p">(</span><span class="n">M_atm</span> <span class="o">*</span> <span class="n">cp</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">dT_dt_per_day</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_column_heating_rate_kday</span><span class="p">(</span><span class="n">rcm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(-0.689418406468796)
+</pre></div>
+</div>
+</div>
+</div>
+<p>so the net cooling rate is 0.73 K day<span class="math notranslate nohighlight">\(^{-1}\)</span>.  Now you may know that a typical cooling rate is actually around 1.2 K day<span class="math notranslate nohighlight">\(^{-1}\)</span>,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add one K to Ts and store it!</span>
+<span class="n">rcm</span><span class="o">.</span><span class="n">Ts</span><span class="o">+=</span><span class="mi">1</span>
+<span class="n">store_T</span><span class="o">=</span><span class="n">rcm</span><span class="o">.</span><span class="n">Ts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">store_T</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2000</span><span class="p">):</span>
+    <span class="c1"># At every timestep</span>
+    <span class="c1"># we calculate the new saturation specific humidity for the new temperature</span>
+    <span class="c1">#  and change the water vapor in the radiation model</span>
+    <span class="c1">#  so that relative humidity is always the same</span>
+    <span class="n">qsat</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">thermo</span><span class="o">.</span><span class="n">qsat</span><span class="p">(</span><span class="n">rcm</span><span class="o">.</span><span class="n">Tatm</span><span class="p">,</span> <span class="n">rcm</span><span class="o">.</span><span class="n">lev</span><span class="p">)</span>
+    <span class="n">rcm</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">specific_humidity</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">rh</span> <span class="o">*</span> <span class="n">qsat</span>
+   
+    <span class="n">rcm</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
+    <span class="n">rcm</span><span class="o">.</span><span class="n">Ts</span><span class="p">[:]</span><span class="o">=</span><span class="n">store_T</span> 
+
+<span class="n">rcm</span><span class="o">.</span><span class="n">Ts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>286.6543391508532
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Field([286.65433915])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q_flux_p1</span> <span class="o">=</span> <span class="n">calculate_column_q</span><span class="p">(</span><span class="n">rcm</span><span class="p">)</span>
+<span class="n">Q_kday_p1</span> <span class="o">=</span> <span class="n">get_column_heating_rate_kday</span><span class="p">(</span><span class="n">rcm</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;net cooling : &quot;</span><span class="p">,</span><span class="n">Q_kday_p1</span><span class="p">,</span> <span class="n">Q_flux_p1</span><span class="p">)</span>
+<span class="n">percentage_cool</span><span class="o">=</span><span class="mf">100.</span><span class="o">*</span><span class="p">(</span><span class="n">Q_flux_p1</span><span class="o">-</span><span class="n">Q_flux_base</span><span class="p">)</span><span class="o">/</span><span class="n">Q_flux_base</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">% c</span><span class="s2">hange&quot;</span> <span class="p">,</span><span class="n">percentage_cool</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>net cooling :  -0.7114054719226356 -84.35505170662393
+% change 3.189219383691456
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-do-we-see">
+<h3>What do we see?<a class="headerlink" href="#what-do-we-see" title="Link to this heading">#</a></h3>
+<p>The net cooling rate increases by 3%.  This model is very simple with no clouds so this estimate is essentially a clear sky response which tends to amplify the cooling. Moreover, and perhaps even more important the lapse rate is fixed in this simple model. If you recall discussion in class we said that this is a negative feedback as the upper troposphere warms faster than the lower, increasing emission from a level above the bulk of the column water vapor.  If you perform this test in a full global model with clouds in an AMIP type experiment (I’ll try to process some AMIP runs to show this) then the answer is closer to 2%.</p>
+<p>So to a zero order approximation, the cooling rate increases by 2% and thus the global mean precipitation has to increase by the same amount.</p>
+</section>
+</section>
+<section id="extreme-precipitation">
+<h2>Extreme Precipitation<a class="headerlink" href="#extreme-precipitation" title="Link to this heading">#</a></h2>
+<p>so that was the <strong>mean</strong> response. We now examine the potential change in precipitation <strong>extremes</strong>.  We  don’t go into details here, but if you want to dig a bit deeper, <a class="reference external" href="https://link.springer.com/article/10.1007/s40641-021-00177-z">there is a beautiful review paper by Neelin et al, 2022</a> that is an excellent starting point.  In that paper they start with the governing equations</p>
+<section id="governing-conservation-equations">
+<h3>Governing Conservation Equations<a class="headerlink" href="#governing-conservation-equations" title="Link to this heading">#</a></h3>
+<p>The vertically integrated moisture and thermodynamic energy equations represent the fundamental balances governing atmospheric water vapor and temperature.</p>
+<div class="math notranslate nohighlight">
+\[\hat{x} = \int_{0}^{p_s} \frac{dp}{g}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\hat{x}\)</span> denotes a mass-weighted vertical integral in pressure coordinates (<span class="math notranslate nohighlight">\(p_s\)</span>: surface pressure, <span class="math notranslate nohighlight">\(g\)</span>: gravity).</p>
+<section id="moisture-conservation">
+<h4>Moisture Conservation<a class="headerlink" href="#moisture-conservation" title="Link to this heading">#</a></h4>
+<p>Can be expressed in flux form  :
+$<span class="math notranslate nohighlight">\( \frac{\partial \hat{q}}{dt} + \nabla \cdot \widehat{\mathbf{v}q} = E - P \)</span><span class="math notranslate nohighlight">\(
+which can be written in an advective form:
+\)</span><span class="math notranslate nohighlight">\(\partial_t \hat{q} + \widehat{\mathbf{v} \cdot \nabla q} + \widehat{\omega \partial_p q} = E - P \)</span>$</p>
+</section>
+<section id="thermodynamic-energy-balance">
+<h4>Thermodynamic Energy Balance<a class="headerlink" href="#thermodynamic-energy-balance" title="Link to this heading">#</a></h4>
+<p><strong>FIX HAT error</strong></p>
+<div class="math notranslate nohighlight">
+\[\partial_t \widehat{c_p T} + \widehat{\mathbf{v} \cdot \nabla c_p T} + \widehat{\omega \partial_p s} = Q_c + F_s \]</div>
+<p>where the new variables are:</p>
+<p><span class="math notranslate nohighlight">\(q\)</span>: Water vapor mixing ratio</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{v}\)</span>: Horizontal wind vector</p>
+<p><span class="math notranslate nohighlight">\(\omega\)</span>: Vertical pressure velocity</p>
+<p><span class="math notranslate nohighlight">\(s = c_p T + \phi\)</span>: Dry static energy (<span class="math notranslate nohighlight">\(\phi\)</span>: geopotential)</p>
+<p><span class="math notranslate nohighlight">\(F_s\)</span>: Net column radiative + sensible heat flux</p>
+<p><span class="math notranslate nohighlight">\(Q_c \approx L_v P\)</span>: Convective heating (<span class="math notranslate nohighlight">\(L_v\)</span>: net latent heat of condensation)</p>
+</section>
+</section>
+</section>
+<section id="leading-order-balances-for-heavy-precipitation">
+<h2>Leading Order Balances for Heavy Precipitation<a class="headerlink" href="#leading-order-balances-for-heavy-precipitation" title="Link to this heading">#</a></h2>
+<p>Under heavily precipitating conditions (especially in the tropics), storage and evaporation are small and can be neglected. The moisture and energy budgets reduce to simple balance equations:</p>
+<p>First We introduce the convergence <span class="math notranslate nohighlight">\(C\)</span>:
+$<span class="math notranslate nohighlight">\(C = -\nabla \cdot \mathbf{v} = \partial_p \omega\)</span>$</p>
+<p>and precipitation is balanced by low-level moisture convergence <span class="math notranslate nohighlight">\(\hat{q}C\)</span> (<span class="math notranslate nohighlight">\(E\)</span> is much smaller than <span class="math notranslate nohighlight">\(P\)</span> in heavily precipitating areas.</p>
+<div class="math notranslate nohighlight">
+\[\hat{q}C \approx P \quad \text{or} \quad -\widehat{\omega \partial_p q} \approx P \]</div>
+<p>To diagnose how global warming changes precipitation (<span class="math notranslate nohighlight">\(\Delta\)</span>), the moisture budget can be decomposed into distinct physical mechanisms for both mean climate states and extreme quantiles.</p>
+<div class="math notranslate nohighlight">
+\[\Delta \hat{q}\bar{C} + \bar{\hat{q}}\Delta C + \Delta \hat{q}\Delta C = \Delta P + \Delta E \]</div>
+<p>We can neglect changes in evaporation <span class="math notranslate nohighlight">\(\Delta E\)</span> as these are small for the reasons given above (PBL tracking surface). We can also neglect the nonlinear terms, and thus</p>
+<div class="math notranslate nohighlight">
+\[\Delta(qC) \approx \underbrace{\Delta q\bar{C}}_{\text{Thermodynamic}} + \underbrace{\bar{q}\Delta C}_{\text{Dynamic}}\]</div>
+<p>leading to the approximate equation for the <span class="math notranslate nohighlight">\(i^{th}\)</span> percentile
+$<span class="math notranslate nohighlight">\(\Delta \hat{q}_i C_i + \hat{q}_i \Delta C_i \approx \Delta P_i \)</span>$</p>
+<section id="thermodynamic-term-delta-hat-q-c">
+<h3>Thermodynamic Term (<span class="math notranslate nohighlight">\(\Delta \hat{q}C\)</span>)<a class="headerlink" href="#thermodynamic-term-delta-hat-q-c" title="Link to this heading">#</a></h3>
+<p>This represents the large-scale, predictable background response to a warming planet.</p>
+<p>As temperatures rise, the atmosphere naturally holds more water vapor according to CC. This scales at roughly 7% per Kelvin of warming according to the Clausius-Clapeyron relation.</p>
+<p>Even if atmospheric circulation and wind patterns (<span class="math notranslate nohighlight">\(C\)</span>) stay exactly the same as they are today, the water vapor increases.  This drives the <em>“wet-get-wetter, dry-get-drier”</em> pattern. Historically wet regions receive more rainfall purely because the baseline moisture supply has increased.</p>
+</section>
+<section id="dynamic-term-hat-q-delta-c">
+<h3>Dynamic Term (<span class="math notranslate nohighlight">\(\hat{q}\Delta C\)</span>)<a class="headerlink" href="#dynamic-term-hat-q-delta-c" title="Link to this heading">#</a></h3>
+<p>This represents how <strong>local shifts in atmospheric circulation modify that baseline response</strong>.</p>
+<p>Climate change alters wind patterns, shifts storm tracks, and changes how intensely air converges or diverges (<span class="math notranslate nohighlight">\(\Delta C\)</span>).</p>
+<p>If storm convergence intensifies (<span class="math notranslate nohighlight">\(\Delta C &gt; 0\)</span>), this can lead to an increased import of moisture, this amplifies the CC response and lead to “super-CC” extreme precip increases.</p>
+<p><img alt="Thermo and dyn response" src="../../_images/thermo_dynam_p_extreme.png" /></p>
+</section>
+</section>
+<section id="precipation-frequency">
+<h2>Precipation frequency<a class="headerlink" href="#precipation-frequency" title="Link to this heading">#</a></h2>
+<p>So what are the take home messages…</p>
+<ol class="arabic simple">
+<li><p>mean precipitation approximately balances radiative cooling, which increases by roughly 2% for every degree of warming.</p></li>
+<li><p>Precipitation extreme instead scale with Clausius Clepeyron in the mean so that for every degree of warming, the water content increases by 7%. This thermodynamic reponse is then modulated by a dynamic response that can amplify or decrease extremes, in some locations doubling the CC response.</p></li>
+<li><p>And so finally we come to the precipitation frequency… so if extremes increase by 7% but the mean only by 2%, the only way for this to hold together is by a decrease in precipitation frequency, so that rain is more intense when it happens but it will happen less often. i.e. dry spells will get longer.</p></li>
+</ol>
+<p>This can have implications for any impact that is nonlinear. For example malaria vectors need ponds that last long enough for the larvae to develop and emerge, but intense rainfall can “flush” out early stage larvae. Thus longer dry spells will dry out some ponds and knock back malaria and intense rainfall will also decrease vector density through flushing of early 1st stage instar.</p>
 </section>
 </section>
 
@@ -540,7 +961,30 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-precipitation-increases">Mean precipitation increases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-precipitation-increases">1. Mean precipitation increases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-energy-budget">Global energy budget</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sign-convention">sign convention</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-these-terms-change">How do these terms change?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation-with-climlab">Calculation with Climlab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-we-see">What do we see?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-precipitation">Extreme Precipitation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#governing-conservation-equations">Governing Conservation Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#moisture-conservation">Moisture Conservation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamic-energy-balance">Thermodynamic Energy Balance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leading-order-balances-for-heavy-precipitation">Leading Order Balances for Heavy Precipitation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamic-term-delta-hat-q-c">Thermodynamic Term (<span class="math notranslate nohighlight">\(\Delta \hat{q}C\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-term-hat-q-delta-c">Dynamic Term (<span class="math notranslate nohighlight">\(\hat{q}\Delta C\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precipation-frequency">Precipation frequency</a></li>
 </ul>
   </nav></div>
 
